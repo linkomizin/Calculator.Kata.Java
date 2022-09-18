@@ -15,11 +15,14 @@ public class Main {
 
         String inputString = GetInputString();
 
-       // parserString.ReadString(inputString);
-    var result = Number.valueOf(inputString);
+
+        try {
+            parserString.ReadString(inputString);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
 
-    out.println(result);
     }
 
     private static String GetInputString() {

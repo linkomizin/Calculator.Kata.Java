@@ -1,14 +1,14 @@
 public enum Number {
-    I("One",1),
-    II("Two",2),
-    III ("Three",3),
-    IV (" Four",4),
-    V   ("Five",5),
-    VI ("Six",6),
-    VII ("Seven",7),
-    IIX   ("Eight",8),
-    IX  ("Nine",9),
-    X ("Ten", 10);
+    I("1",1),
+    II("2",2),
+    III ("3",3),
+    IV ("4",4),
+    V   ("5",5),
+    VI ("6",6),
+    VII ("7",7),
+    IIX   ("8",8),
+    IX  ("9",9),
+    X ("10", 10);
 
     private String stringRoman;
     private int anInt;
