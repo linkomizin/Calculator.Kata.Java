@@ -10,6 +10,7 @@ public class ParserString {
     private String operator;
     private int A;
     private int B;
+    private Result _resultParseString;
 
     private StepRead stepRead;
 
@@ -22,19 +23,19 @@ public class ParserString {
 
 
         boolean resultIsError = WhatIsSetNumber(splittedString[0], splittedString[2]);
-        if(resultIsError == true)
-        {
+        if (resultIsError == true) {
             throw new Exception("Error roman and arabian number.");
         }
         stepRead = StepRead.First;
         for (String partString : splittedString) {
-
             ProcessString(partString);
-
             if (isError) {
                 throw new Exception("Error.");
             }
         }
+
+        _resultParseString = new Result();
+
     }
 
 
@@ -56,52 +57,46 @@ public class ParserString {
 
         switch (stepRead) {
             case First:
-                AnalyzeNumber(splittedString);
+                A = AnalyzeNumber(splittedString);
 
-                if (isError == true) {
-                    throw new Exception("Error first number");
-                }
                 stepRead = StepRead.Operator;
                 break;
 
             case Operator:
-                AnalyzeOperator(splittedString);
-                if (isError == true) {
-                    throw new Exception("Error operator");
-                }
+                operator = AnalyzeOperator(splittedString);
+              
                 stepRead = StepRead.Second;
                 break;
 
             case Second:
-                AnalyzeNumber(splittedString);
+                B = AnalyzeNumber(splittedString);
 
-                if (isError == true) {
-                    throw new Exception("Error first number");
-                }
                 break;
         }
     }
 
-    private void AnalyzeNumber(String partString) {
-
+    private int AnalyzeNumber(String partString) throws Exception {
+        int fromReturn;
         if (Number.fromString(partString) != null) {
-
+            fromReturn = Number.fromString(partString).TranslationInt();
         } else if (TryParseInt(partString) == true) {
-            Integer.parseInt(partString);  // We now know that it safe to parse
+            fromReturn = Integer.parseInt(partString);
+            // We now know that it safe to parse
         } else {
-            isError = true;
+            throw new Exception("Error parse string to int or roman");
         }
-
-
+        return fromReturn;
     }
 
 
-    private void AnalyzeOperator(String subString) {
+    private String AnalyzeOperator(String subString) throws Exception {
+        String operatorToReturn;
         if (operatorList.contains(subString) == false) {
-            isError = true;
+            throw new Exception("Error operator");
         } else {
-            operator = subString;
+            operatorToReturn = subString;
         }
+        return operatorToReturn;
     }
 
 
@@ -113,6 +108,4 @@ public class ParserString {
             return false;
         }
     }
-
-
 }
