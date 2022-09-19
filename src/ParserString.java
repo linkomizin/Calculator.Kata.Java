@@ -59,8 +59,7 @@ public class ParserString {
                 AnalyzeNumber(splittedString);
 
                 if (isError == true) {
-                    System.out.println("Error first number");
-                    throw new Exception();
+                    throw new Exception("Error first number");
                 }
                 stepRead = StepRead.Operator;
                 break;
@@ -68,8 +67,7 @@ public class ParserString {
             case Operator:
                 AnalyzeOperator(splittedString);
                 if (isError == true) {
-                    System.out.println("Error operator");
-                    throw new Exception();
+                    throw new Exception("Error operator");
                 }
                 stepRead = StepRead.Second;
                 break;
@@ -78,8 +76,7 @@ public class ParserString {
                 AnalyzeNumber(splittedString);
 
                 if (isError == true) {
-                    System.out.println("Error first number");
-                    throw new Exception();
+                    throw new Exception("Error first number");
                 }
                 break;
         }
