@@ -14,7 +14,7 @@ public class ParserString {
 
     private StepRead stepRead;
 
-    public void ReadString(String someString) throws Exception {
+    public Result ReadString(String someString) throws Exception {
         String[] splittedString = someString.split(" ");
 
         if (splittedString.length != 3) {
@@ -33,9 +33,12 @@ public class ParserString {
                 throw new Exception("Error.");
             }
         }
+        if(A <= 0 && A >=11 || B < 1 && B > 10){
+            throw new Exception("The number is not within the limits of the minimum - maximum");
+        }
 
-        _resultParseString = new Result();
-
+         _resultParseString = new Result(A,B, operator);
+        return _resultParseString;
     }
 
 
@@ -64,7 +67,7 @@ public class ParserString {
 
             case Operator:
                 operator = AnalyzeOperator(splittedString);
-              
+
                 stepRead = StepRead.Second;
                 break;
 

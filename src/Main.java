@@ -14,7 +14,12 @@ public class Main {
         parserString = new ParserString();
 
         String inputString = GetInputString();
-        parserString.ReadString(inputString);
+        try {
+            var resultParseString =  parserString.ReadString(inputString);
+        }
+        catch (Exception e){
+            out.println(e.getMessage());
+        }
 
 
 
