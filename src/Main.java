@@ -58,7 +58,7 @@ public class Main {
             case "-":
                 resul = resultParseString.get_aInt() - resultParseString.get_bInt();
                 if (resultParseString.is_isRoman() && resul < 0) {
-                    throw new Exception("Roman not -" + resul);
+                    throw new Exception("Roman cannot be negative: " + resul);
                 }
                 break;
 
