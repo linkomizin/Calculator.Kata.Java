@@ -10,17 +10,13 @@ public class Main {
     private static int maxInt = 10;
     private static ParserString parserString;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         parserString = new ParserString();
 
         String inputString = GetInputString();
+        parserString.ReadString(inputString);
 
 
-        try {
-            parserString.ReadString(inputString);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
 
 
     }

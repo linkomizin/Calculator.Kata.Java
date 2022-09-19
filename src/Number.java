@@ -25,4 +25,12 @@ public enum Number {
     {
         return anInt;
     }
+    public static Number fromString(String text) {
+        for (Number b : Number.values()) {
+            if (b.stringRoman.equalsIgnoreCase(text)) {
+                return b;
+            }
+        }
+        return null;
+    }
 }

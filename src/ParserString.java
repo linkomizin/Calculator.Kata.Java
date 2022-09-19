@@ -16,19 +16,39 @@ public class ParserString {
     public void ReadString(String someString) throws Exception {
         String[] splittedString = someString.split(" ");
 
-        if (splittedString.length > 3 && splittedString.length < 3) {
-            System.out.println("Error length");
+        if (splittedString.length != 3) {
+            throw new Exception("Lenght error.");
+        }
+
+
+        boolean resultIsError = WhatIsSetNumber(splittedString[0], splittedString[2]);
+        if(resultIsError == true)
+        {
+            throw new Exception("Error roman and arabian number.");
         }
         stepRead = StepRead.First;
         for (String partString : splittedString) {
-            try {
-                ProcessString(partString);
-            } catch (Exception e) {
-                if(isError){
-                    throw new Exception();
-                }
+
+            ProcessString(partString);
+
+            if (isError) {
+                throw new Exception("Error.");
             }
         }
+    }
+
+
+    private boolean WhatIsSetNumber(String first, String second) {
+
+        boolean isPartError = false;
+        if (Number.fromString(first) != null && Number.fromString(second) != null) {
+            isRomanInt = true;
+        } else if (TryParseInt(first) != false && TryParseInt(second) != false) {
+            isArabInt = true;
+        } else {
+            isPartError = true;
+        }
+        return isPartError;
     }
 
     private void ProcessString(String splittedString) throws Exception {
@@ -47,30 +67,29 @@ public class ParserString {
 
             case Operator:
                 AnalyzeOperator(splittedString);
-                if (isError == true){
+                if (isError == true) {
                     System.out.println("Error operator");
                     throw new Exception();
                 }
-                    break;
+                stepRead = StepRead.Second;
+                break;
 
             case Second:
+                AnalyzeNumber(splittedString);
 
+                if (isError == true) {
+                    System.out.println("Error first number");
+                    throw new Exception();
+                }
                 break;
         }
     }
 
     private void AnalyzeNumber(String partString) {
-        Number resultEnum ;
-        try
-        {
-            resultEnum = Number.valueOf(partString);
-        } catch (NumberFormatException e)
-        {
 
-        }
+        if (Number.fromString(partString) != null) {
 
-
-        if (TryParseInt(partString) == true) {
+        } else if (TryParseInt(partString) == true) {
             Integer.parseInt(partString);  // We now know that it safe to parse
         } else {
             isError = true;
@@ -82,10 +101,12 @@ public class ParserString {
 
     private void AnalyzeOperator(String subString) {
         if (operatorList.contains(subString) == false) {
-            System.out.println(operatorList.contains(subString) == false);
             isError = true;
+        } else {
+            operator = subString;
         }
     }
+
 
     private boolean TryParseInt(String value) {
         try {
