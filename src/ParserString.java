@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.util.*;
 
 public class ParserString {
@@ -33,11 +32,11 @@ public class ParserString {
                 throw new Exception("Error.");
             }
         }
-        if(A <= 0 && A >=11 || B < 1 && B > 10){
+        if(A <= 0 || A >=11 || B < 1 || B > 10){
             throw new Exception("The number is not within the limits of the minimum - maximum");
         }
 
-         _resultParseString = new Result(A,B, operator);
+         _resultParseString = new Result(A,B, operator, isRomanInt);
         return _resultParseString;
     }
 
