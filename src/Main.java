@@ -10,25 +10,31 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         parserString = new ParserString();
-
         String inputString = GetInputString();
+
+        var res = Number.fromString(inputString);
+        //out.println(res);
+
+
         Result resultParseString = null;
         try {
-             resultParseString = parserString.ReadString(inputString);
+            resultParseString = parserString.ReadString(inputString);
         } catch (Exception e) {
             out.println(e.getMessage());
         }
         int calcS = 0;
 
-        if(resultParseString != null){
-          calcS =  Calculate(resultParseString);
+        if (resultParseString != null) {
+            calcS = Calculate(resultParseString);
         }
 
-        if (resultParseString.is_isRoman() == true){
+        if (resultParseString.is_isRoman() == true) {
+            var resNumner = Number.getAnIntString(calcS);
+            if (resNumner != null) {
+                out.println(resNumner);
+            }
 
-            out.println(Number.fromString(String.valueOf(calcS)));
-        }
-        else {
+        } else {
             out.println(calcS);
         }
 
@@ -51,8 +57,8 @@ public class Main {
 
             case "-":
                 resul = resultParseString.get_aInt() - resultParseString.get_bInt();
-                if(resultParseString.is_isRoman() && resul < 0){
-                    throw new Exception("Roman not -"+resul);
+                if (resultParseString.is_isRoman() && resul < 0) {
+                    throw new Exception("Roman not -" + resul);
                 }
                 break;
 
@@ -61,7 +67,7 @@ public class Main {
                 break;
 
             case "/":
-                if(resultParseString.get_bInt() == 0){
+                if (resultParseString.get_bInt() == 0) {
                     throw new Exception("Division by zero");
                 }
                 resul = resultParseString.get_aInt() / resultParseString.get_bInt();

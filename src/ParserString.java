@@ -2,7 +2,7 @@ import java.util.*;
 
 public class ParserString {
 
-    private boolean isError = false;
+
     private boolean isArabInt = false;
     private boolean isRomanInt = false;
     private List<String> operatorList = Arrays.asList("/", "*", "+", "-");
@@ -28,9 +28,7 @@ public class ParserString {
         stepRead = StepRead.First;
         for (String partString : splittedString) {
             ProcessString(partString);
-            if (isError) {
-                throw new Exception("Error.");
-            }
+
         }
         if(A <= 0 || A >=11 || B < 1 || B > 10){
             throw new Exception("The number is not within the limits of the minimum - maximum");
@@ -83,7 +81,7 @@ public class ParserString {
             fromReturn = Number.fromString(partString).TranslationInt();
         } else if (TryParseInt(partString) == true) {
             fromReturn = Integer.parseInt(partString);
-            // We now know that it safe to parse
+
         } else {
             throw new Exception("Error parse string to int or roman");
         }
