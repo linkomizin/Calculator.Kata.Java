@@ -33,7 +33,8 @@ public class Main {
             if (resNumner != null) {
                 out.println(resNumner);
             } else {
-                int[] values = new int[]{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+                int[] values = new int[]
+                        {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
                 String[] numerals = new String[]
                         {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
 
@@ -43,7 +44,10 @@ public class Main {
 
                 for (int i = 0; i < 13; i++) {
                     while (calcS >= values[i]) {
+
+                        out.print(calcS+" " + values[i]);
                         calcS -= values[i];
+                        out.println(" "+ calcS + " " + numerals[i]);
                         result.append(numerals[i]);
                     }
                 }
